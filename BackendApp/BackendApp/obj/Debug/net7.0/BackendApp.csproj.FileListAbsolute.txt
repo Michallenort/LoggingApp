@@ -74,3 +74,7 @@ C:\Users\micha\OneDrive\Pulpit\LoggingApp\BackendApp\BackendApp\bin\Debug\net7.0
 C:\Users\micha\OneDrive\Pulpit\LoggingApp\BackendApp\BackendApp\bin\Debug\net7.0\Microsoft.Extensions.DependencyModel.dll
 C:\Users\micha\OneDrive\Pulpit\LoggingApp\BackendApp\BackendApp\bin\Debug\net7.0\Mono.TextTemplating.dll
 C:\Users\micha\OneDrive\Pulpit\LoggingApp\BackendApp\BackendApp\bin\Debug\net7.0\System.CodeDom.dll
+C:\Users\micha\OneDrive\Pulpit\LoggingApp\BackendApp\BackendApp\bin\Debug\net7.0\FluentValidation.dll
+C:\Users\micha\OneDrive\Pulpit\LoggingApp\BackendApp\BackendApp\bin\Debug\net7.0\FluentValidation.AspNetCore.dll
+C:\Users\micha\OneDrive\Pulpit\LoggingApp\BackendApp\BackendApp\bin\Debug\net7.0\FluentValidation.DependencyInjectionExtensions.dll
+C:\Users\micha\OneDrive\Pulpit\LoggingApp\BackendApp\BackendApp\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
