@@ -1,0 +1,79 @@
+@page "/adduser"
+@using Blazored.LocalStorage
+@using LoggingApp.Frontend.Exceptions
+@using LoggingApp.Shared.Models
+@using System.Net
+@using System.Text.Json
+@inject HttpClient Http
+@inject AuthenticationStateProvider AuthStateProvider
+@inject ILocalStorageService LocalStorage
+@inject NavigationManager NavigationManager
+@inject IToastService ToastService
+@attribute [Authorize(Roles = "Admin")]
+
+<h3>Add user</h3>
+
+<EditForm Model="user" OnSubmit="HandleAddUser">
+    <label for="firstname" class="form-label">First Name</label>
+    <InputText id="firstname" class="form-control" @bind-Value="user.FirstName"/><br/>
+    <label for="lastname" class="form-label">Second Name</label>
+    <InputText id="lastname" class="form-control" @bind-Value="user.LastName"/><br/>
+    <label for="email" class="form-label">Email</label>
+    <InputText id="email" class="form-control" @bind-Value="user.Email"/><br/>
+    <label for="password" class="form-label">Password</label>
+    <InputText id="password" class="form-control" @bind-Value="user.Password" type="password"/><br/>
+    <label for="confirmpassword" class="form-label">Confirm Password</label>
+    <InputText id="confirmpassword" class="form-control" @bind-Value="user.ConfirmPassword" type="password"/><br/>
+    <label for="nationality" class="form-label">Nationality</label>
+    <InputText id="nationality" class="form-control" @bind-Value="user.Nationality"/><br/>
+    <label for="dateofbirth" class="form-label">Date Of Birth</label>
+    <InputText id="dateofbirth" class="form-control" @bind-Value="DateOfBirthString" type="date"/><br/>
+    <label for="role" class="form-label">Role</label>
+    <select class="form-select" aria-label="Default select example" @bind="roleId">
+        <option value="1" selected>User</option>
+        <option value="2">Admin</option>
+    </select>
+    <button type="submit" class="btn btn-primary mt-3">Register</button>
+</EditForm>
+
+@code {
+    RegisterUserDto user = new RegisterUserDto();
+    string DateOfBirthString = "";
+    string roleId = "1";
+
+    async Task HandleAddUser()
+    {
+        user.RoleId = Int32.Parse(roleId);
+
+        try
+        {
+            user.DateOfBirth = DateTime.Parse(DateOfBirthString);
+            HttpResponseMessage response = await Http.PostAsJsonAsync("api/account/register", user);
+            
+            if (response.StatusCode == HttpStatusCode.BadRequest)
+            {
+                string content = await response.Content.ReadAsStringAsync();
+                var jsonDocument = JsonDocument.Parse(content);
+                if (jsonDocument.RootElement.TryGetProperty("errors", out var errorsProperty))
+                {
+                    throw new BadRequestException(errorsProperty.ToString());
+                }
+
+            }
+            
+            NavigationManager.NavigateTo("/users");
+        }
+        catch (FormatException e)
+        {
+            ToastService.ShowError("The date of birth can't be empty");
+        }
+        catch (BadRequestException e)
+        {
+            ToastService.ShowError(e.Message);
+        }
+        catch (Exception e)
+        {
+            ToastService.ShowError(e.Message);
+        }
+    }
+}

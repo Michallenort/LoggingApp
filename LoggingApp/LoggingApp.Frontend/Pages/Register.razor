@@ -1,0 +1,72 @@
+@page "/register"
+@using Blazored.LocalStorage
+@using LoggingApp.Shared.Models
+@using System.Net
+@using System.Text.Json
+@using LoggingApp.Frontend.Exceptions
+@inject HttpClient Http
+@inject AuthenticationStateProvider AuthStateProvider
+@inject ILocalStorageService LocalStorage
+@inject NavigationManager NavigationManager
+@inject IToastService ToastService
+
+<h3>Register</h3>
+
+<EditForm Model="user" OnSubmit="HandleRegister">
+    <label for="firstname" class="form-label">First Name</label>
+    <InputText id="firstname" class="form-control" @bind-Value="user.FirstName"/><br/>
+    <label for="lastname" class="form-label">Second Name</label>
+    <InputText id="lastname" class="form-control" @bind-Value="user.LastName"/><br/>
+    <label for="email" class="form-label">Email</label>
+    <InputText id="email" class="form-control" @bind-Value="user.Email"/><br/>
+    <label for="password" class="form-label">Password</label>
+    <InputText id="password" class="form-control" @bind-Value="user.Password" type="password"/><br/>
+    <label for="confirmpassword" class="form-label">Confirm Password</label>
+    <InputText id="confirmpassword" class="form-control" @bind-Value="user.ConfirmPassword" type="password"/><br/>
+    <label for="nationality" class="form-label">Nationality</label>
+    <InputText id="nationality" class="form-control" @bind-Value="user.Nationality"/><br/>
+    <label for="dateofbirth" class="form-label">Date Of Birth</label>
+    <InputText id="dateofbirth" class="form-control" @bind-Value="DateOfBirthString" type="date"/><br/>
+    <button type="submit" class="btn btn-primary">Register</button>
+</EditForm>
+
+@code {
+    RegisterUserDto user = new RegisterUserDto();
+    string DateOfBirthString = "";
+
+    async Task HandleRegister()
+    {
+        user.RoleId = 1;
+
+        try
+        {
+            user.DateOfBirth = DateTime.Parse(DateOfBirthString);
+            HttpResponseMessage response = await Http.PostAsJsonAsync("api/account/register", user);
+
+            if (response.StatusCode == HttpStatusCode.BadRequest)
+            {
+                string content = await response.Content.ReadAsStringAsync();
+                var jsonDocument = JsonDocument.Parse(content);
+                if (jsonDocument.RootElement.TryGetProperty("errors", out var errorsProperty))
+                {
+                    throw new BadRequestException(errorsProperty.ToString());
+                }
+
+            }
+
+            NavigationManager.NavigateTo("");
+        }
+        catch (FormatException e)
+        {
+            ToastService.ShowError("The date of birth can't be empty");
+        }
+        catch (BadRequestException e)
+        {
+            ToastService.ShowError(e.Message);
+        }
+        catch (Exception e)
+        {
+            ToastService.ShowError(e.Message);
+        }
+    }
+}

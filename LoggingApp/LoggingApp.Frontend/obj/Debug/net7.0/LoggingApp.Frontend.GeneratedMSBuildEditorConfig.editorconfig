@@ -1,0 +1,65 @@
+is_global = true
+build_property.TargetFramework = net7.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = false
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = browser
+build_property.RootNamespace = LoggingApp.Frontend
+build_property.RootNamespace = LoggingApp.Frontend
+build_property.ProjectDir = C:\Users\micha\OneDrive\Pulpit\LoggingApp\LoggingApp\LoggingApp.Frontend\
+build_property.RazorLangVersion = 7.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\micha\OneDrive\Pulpit\LoggingApp\LoggingApp\LoggingApp.Frontend
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/micha/OneDrive/Pulpit/LoggingApp/LoggingApp/LoggingApp.Frontend/App.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/micha/OneDrive/Pulpit/LoggingApp/LoggingApp/LoggingApp.Frontend/Pages/AddUser.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRkVXNlci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/micha/OneDrive/Pulpit/LoggingApp/LoggingApp/LoggingApp.Frontend/Pages/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/micha/OneDrive/Pulpit/LoggingApp/LoggingApp/LoggingApp.Frontend/Pages/Login.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW4ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/micha/OneDrive/Pulpit/LoggingApp/LoggingApp/LoggingApp.Frontend/Pages/Register.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVnaXN0ZXIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/micha/OneDrive/Pulpit/LoggingApp/LoggingApp/LoggingApp.Frontend/Pages/Users.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlcnMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/micha/OneDrive/Pulpit/LoggingApp/LoggingApp/LoggingApp.Frontend/Shared/LoginLogoutButton.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXExvZ2luTG9nb3V0QnV0dG9uLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/micha/OneDrive/Pulpit/LoggingApp/LoggingApp/LoggingApp.Frontend/Shared/RegisterButton.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFJlZ2lzdGVyQnV0dG9uLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/micha/OneDrive/Pulpit/LoggingApp/LoggingApp/LoggingApp.Frontend/Shared/SurveyPrompt.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFN1cnZleVByb21wdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/micha/OneDrive/Pulpit/LoggingApp/LoggingApp/LoggingApp.Frontend/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/micha/OneDrive/Pulpit/LoggingApp/LoggingApp/LoggingApp.Frontend/Shared/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-rqx4wlff4p
+
+[C:/Users/micha/OneDrive/Pulpit/LoggingApp/LoggingApp/LoggingApp.Frontend/Shared/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdk1lbnUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-a6c0pb420s

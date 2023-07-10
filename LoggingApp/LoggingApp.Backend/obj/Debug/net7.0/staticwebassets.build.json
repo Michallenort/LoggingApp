@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "jFJKtoc8RKk5JlPCSE7pZe5K+lkQfmkcMoQKQI6fj/0=",
+  "Source": "LoggingApp.Backend",
+  "BasePath": "_content/LoggingApp.Backend",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

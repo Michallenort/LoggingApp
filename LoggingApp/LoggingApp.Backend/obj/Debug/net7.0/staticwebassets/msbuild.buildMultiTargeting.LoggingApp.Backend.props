@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\LoggingApp.Backend.props" />
+</Project>

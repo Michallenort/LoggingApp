@@ -1,0 +1,18 @@
+@using Blazored.LocalStorage
+@using Microsoft.AspNetCore.Components.Authorization
+@inject NavigationManager NavigationManager
+@inject ILocalStorageService LocalStorage 
+@inject AuthenticationStateProvider AuthStateProvider
+
+<AuthorizeView>
+    <NotAuthorized>
+        <button @onclick="Register" class="btn btn-primary" style="margin-left: 2px">Register</button>
+    </NotAuthorized>
+</AuthorizeView>
+
+@code {
+    void Register()
+    {
+        NavigationManager.NavigateTo("register");
+    }
+}

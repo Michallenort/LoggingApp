@@ -1,0 +1,112 @@
+@page "/users"
+@using LoggingApp.Shared.Models
+@inject HttpClient http
+@inject IToastService ToastService
+@inject NavigationManager NavigationManager
+@inject AuthenticationStateProvider AuthStateProvider
+
+<AuthorizeView Roles="Admin">
+    <button class="btn btn-primary" @onclick="HandleAddUser">Add User</button><br/>
+</AuthorizeView>
+<AuthorizeView>
+    <Authorized>
+        @if (!users.Any())
+        {
+            <p>
+                <em>Loading...</em>
+            </p>
+        }
+        else
+        {
+            <InputText id="search" @bind-Value="searchPhrase" />
+            <button class="btn btn-primary" @onclick="Search">Search</button>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Nationality</th>
+                    <th>Date of birth</th>
+                    @if (isAdmin)
+                    {
+                        <th>Delete</th>
+                    }
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var user in users)
+                {
+                    <tr>
+                        <td>@user.FirstName @user.LastName</td>
+                        <td>@user.Email</td>
+                        <td>@user.Nationality</td>
+                        <td>@user.DateOfBirth.ToString()</td>
+                        @if (isAdmin)
+                        {
+                            <td><button @onclick="(() => Delete(user.Id))" class="btn btn-danger">Delete</button></td>
+                        }
+                    </tr>
+                }
+                </tbody>
+            </table>
+        }
+    </Authorized>
+    <NotAuthorized>
+        <h3>You are not authorized</h3>
+    </NotAuthorized>
+</AuthorizeView>
+
+@code {
+    private IEnumerable<UserDto>? users = new List<UserDto>();
+    private string searchPhrase = "";
+    private bool isAdmin = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var user = (await AuthStateProvider.GetAuthenticationStateAsync()).User;
+        isAdmin = user.IsInRole("Admin");
+        
+        try
+        {
+            users = await http.GetFromJsonAsync<List<UserDto>>("api/account/user?filterPhrase=");
+            
+        }
+        catch (Exception e)
+        {
+            ToastService.ShowError("It is not available to load data!");
+        }
+        
+    }
+
+    async Task Search()
+    {
+        try
+        {
+            users = await http.GetFromJsonAsync<List<UserDto>>($"api/account/user?filterPhrase={searchPhrase}");
+            
+        }
+        catch (Exception e)
+        {
+            ToastService.ShowError("It is not available to load data!");
+        }
+    }
+
+    async Task Delete(int id)
+    {
+        try
+        {
+            await http.DeleteAsync($"api/account/user/{id}");
+            users = await http.GetFromJsonAsync<List<UserDto>>("api/account/user?filterPhrase=");
+        }
+        catch (Exception e)
+        {
+            ToastService.ShowError("It is not available to delete user!");
+        }        
+    }
+
+    async Task HandleAddUser()
+    {
+        NavigationManager.NavigateTo("/adduser");
+    }
+
+}
